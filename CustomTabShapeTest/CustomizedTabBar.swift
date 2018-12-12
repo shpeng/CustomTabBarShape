@@ -29,8 +29,26 @@ class CustomizedTabBar: UITabBar {
 		self.shapeLayer = shapeLayer
 	}
 
+    private func addCenterButton() {
+        let button = UIButton.init(type: .contactAdd);
+        let buttonWidth: CGFloat = 50
+        let centerWidth = self.frame.width/2 - buttonWidth/2
+        button.frame = CGRect(x: centerWidth, y: 0, width: buttonWidth, height: buttonWidth);
+        button.layer.cornerRadius = buttonWidth/2
+        button.backgroundColor = UIColor.green
+        
+        button.addTarget(self, action: #selector(action2), for: .touchUpInside)
+        self.addSubview(button)
+    }
+    
+    @objc
+    private func action2(_ sender: UIButton) {
+        print("button click");
+    }
+    
 	override func draw(_ rect: CGRect) {
 		self.addShape()
+        self.addCenterButton()
 	}
 
 	func createPath() -> CGPath {
